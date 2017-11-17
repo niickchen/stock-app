@@ -1,0 +1,160 @@
+.navbars {
+    border-top: none;
+    background-color: white;
+    
+}
+
+.up {
+    color:limegreen;
+}
+
+.tab-content {
+    border-top: thin solid rgb(240,240,240);
+}
+
+.down {
+    color: orangered;
+    
+}
+
+td img {
+    resize: both;
+    width: 20px;
+}
+
+
+.title {
+    font-size: 14pt !important;
+}
+
+.progress-error-panel {
+    padding-top: 51px;
+}
+
+.progress { 
+}
+
+table {
+    
+}
+
+.element {
+    margin-top: 51px;
+    
+}
+
+span.glyphicon-star-empty {
+    font-size: 1.2em;
+}
+
+span.glyphicon-star {
+    font-size: 1.2em;
+    color: rgb(244, 206, 66);
+}
+
+button {
+    float: right !important;
+    margin-left: 5px;
+}
+
+#favbar {
+    
+}
+
+.tab-content {
+    
+}
+
+#detailTable {
+}
+
+#fb-icon {
+    width: 21px;
+}
+
+.top-headers {
+    margin-top: 17px;
+    position: relative;
+    float: left;
+    display: block;
+    width: 50%;
+    padding: 0 20px;
+    min-height: 480px;
+}
+
+.table-responsive{
+    border: none;
+}
+
+#detail-header {
+    padding-bottom: 25px!important;
+    border: none;
+}
+
+#detail-header-row {
+    border-bottom: thin solid rgb(240,240,240);
+}
+
+#nav-indicators {
+    border-bottom: thin solid rgb(240,240,240);
+    border-top: none;
+}
+
+.panel-danger-indicator {
+    margin-top: 11px;
+}
+
+.deets-heading-btn {
+    float: left;
+}
+
+.panel-heading {
+    line-height: 30px;
+}
+
+.stock-table-row {
+    height: 50px;
+    vertical-align: middle;
+    float: none;
+}
+
+#historical {
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    #favbar {
+        margin-top: 20px;
+    }
+    
+    #chart-container {
+        border-top: 1px solid rgb(240,240,240);
+        padding-top: 30px;
+    }
+    
+    .table {
+       
+        width: 100% !important;
+    }
+    
+    .progress-error-panel {
+        padding-top: 70px;
+}
+    
+    .nopadding {
+       padding: 0 !important;
+       margin: 0 !important;
+    }
+    
+    .top-headers {
+        width: 100%;
+        
+    }
+
+}
+
+@media only screen and (max-width: 576px) {
+
+    
+}

@@ -1,0 +1,101 @@
+.redInputBox {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 1);
+    border: 1px solid rgba(255, 0, 0, 1);
+}
+
+.inputError {
+}
+
+.noInputError {
+    display: none;
+}
+
+.search-panel {
+    margin-top: 20px;
+}
+
+input {
+    float: right;
+    margin-top: 15px !important;
+}
+
+#asterisk {
+    color: red;
+}
+
+.search-container {
+    margin-top: 20px;
+}
+
+.table-responsive{
+    border: none;
+}
+
+button {
+    margin-top: 20px;
+    left: 15px;
+    position: relative;
+}
+
+.buttons {
+    width: 215px;
+    position: absolute;
+    top: 85px;
+}
+
+.line {
+    margin-left: -1.27% !important;
+    width: 102.70%;
+    border-bottom: 1px solid white;
+    margin-bottom: 20px;
+}
+
+.panel-body {
+    height: 230px;
+}
+
+input[type="text"] {                       
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 992px) {
+    input {
+        width: 60% !important;
+        margin-top: 0 !important;
+    }
+    
+    .panel-body {
+        height: 160px;
+    }
+    
+    button {
+        margin-top: 0;
+        
+    }
+    
+    #subscript {
+        position: relative;
+        left: 40%;
+        top: 12px;
+    }
+    
+    .buttons {
+        width: 215px;
+        position: relative;
+        top: inherit;
+    }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    input {
+        width: 145% !important;
+        margin-top: 0;
+        left: 45%;
+        position: relative;
+    }
+    
+    .panel-body {
+        height: 230px;
+    }
+
+}

@@ -1,0 +1,37 @@
+<div class="container table-responsive search-panel">
+	<div class="panel panel-default">
+        <div class="panel-body">
+            <div class="title text-center"><h4><b>Stock Market Search</b></h4></div>
+            <div class="search-container">
+                <form class="form">
+                    <div class="form-group row col-sm-12">
+                        <div class="col-sm-9">
+                        <div class="col-sm-12">
+                        <label for="symbol">Enter Stock Ticker Symbol:<sup><span id="asterisk">*</span></sup>
+                        </label>
+                        <input name="search" #stockInput id="symbol" class="form-control" type="text" [matAutocomplete]="auto" placeholder="e.g. AAPL" [class.redInputBox]="isInvalidInput" (focus)="keyUp(stockInput.value.toUpperCase())" (keyup)="keyUp(stockInput.value.toUpperCase())">
+                        <br/>
+                        <span id="subscript" [class.noInputError]="!isInvalidInput" [class.inputError]="isInvalidInput">Please enter a stock ticker symbol.</span>
+                        </div>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options | async" [value]="option.Symbol">
+                                {{ option.Symbol }} - {{ option.Name }} ({{ option.Exchange }})
+                            </mat-option>
+                        </mat-autocomplete>
+                        </div>
+                        <div class='col-sm-3 buttons'>
+                            <a [routerLink]="buttonRouterLink" [queryParams]="{'symbol': stockInput.value.toUpperCase(), 'from': 'search'}">
+                                <button type="submit" class="btn btn-primary" [disabled]="buttonDisabled" (click)="search(stockInput.value.toUpperCase())"><span class='glyphicon glyphicon-search'></span>Get Quote</button>
+                            </a>
+                            <a routerLink="/">
+                                <button type="button" class="btn btn-default" (click)="stockInput.value = ''; clearInput()"><span class='glyphicon glyphicon-refresh'></span>Clear</button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container"><div class="col-sm-12"><div class="line"></div></div></div>

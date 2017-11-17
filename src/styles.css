@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    background-image: url("http://cs-server.usc.edu:45678/hw/hw8/images/background.png");
+}
+
+app-root {
+    
+}
+
+.table-responsive{
+    border: none;
+    
+}
+
+html {
+    overflow-y:scroll;
+}
+
+.table-responsive .table {
+    max-width: none;
+    -webkit-overflow-scrolling: touch !important;
+}

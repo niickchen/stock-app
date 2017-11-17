@@ -1,0 +1,263 @@
+<div class="container table-responsive" id='detail-container'>
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<b>Stock Details</b>
+			<button type='button' class='btn btn-default deets-heading-btn' routerLink='/favorite'><span class='glyphicon glyphicon-chevron-left'></span></button>
+		</div>
+		<div class="panel-body">
+            <div class="">
+			<table class="table" >
+                <div class=''>
+				
+					<!-- Nav tabs -->
+                    <div class='row' >
+					<div class="col-sm-12">
+						<td class='navbars'>
+							<ul class="nav nav-pills">
+								<li class="active"><a data-toggle="tab" href="result/detail#current"><span class="glyphicon glyphicon-dashboard"></span> Current Stock</a>
+								</li>
+								<li><a data-toggle="tab" href="result/detail#historical"><span class="glyphicon glyphicon-stats"></span> Historical Charts</a>
+								</li>
+								<li><a data-toggle="tab" href="result/detail#news"><span class="glyphicon glyphicon-link"></span> News Feeds</a>
+								</li>
+							</ul>
+						</td>
+					</div>
+                    </div>
+                    <div class="" >
+					
+						<div class="tab-content">
+							<!-- current section -->
+							<div id="current" class="row tab-pane fade in active">
+								<div class=" nopadding">
+									<div class="top-headers">
+										<table class="table table-striped" id="favbar">
+                                            
+											<thead>
+                                                
+                                                    <tr id='detail-header-row' >
+                                                        <th id='detail-header'>Stock Details
+                                                        </th>
+                                                        <button type="button" class="btn btn-default" (click)="shareOnFB('fb')"  [disabled]='!this.fbActive'> <img id="fb-icon" src="http://cs-server.usc.edu:45678/hw/hw8/images/facebook.png">
+                                                        </button>
+                                                        <button type="button" class="btn btn-default" (click)="invertStar()"><span class="glyphicon" [class.glyphicon-star-empty]='emptyStar' [class.glyphicon-star]='!emptyStar'></span>
+                                                        </button>
+                                                    </tr>
+                                            
+											</thead>
+											<tbody *ngIf="detailProgress && !detailError" style="">
+												<tr>
+													<th class="stock-table-row" scope="row">Stock Ticker Symbol</th>
+													<td class="stock-table-row">{{ tickerSymbol }}</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Last Price</th>
+													<td class="stock-table-row">{{lastPrice}}</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Change (Change Percent)</th>
+													<td class="stock-table-row" [class.up]='up' [class.down]='down'>{{change}}<img [src]='src'>
+													</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Timestamp</th>
+													<td class="stock-table-row">{{timestamp}}</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Open</th>
+													<td class="stock-table-row">{{open}}</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Close</th>
+													<td class="stock-table-row">{{close}}</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Day's Range</th>
+													<td class="stock-table-row">{{daysrange}}</td>
+												</tr>
+												<tr>
+													<th class="stock-table-row" scope="row">Volume</th>
+													<td class="stock-table-row">{{volume}}</td>
+												</tr>
+											</tbody>
+                                                
+										</table>
+									
+									<br *ngIf="!detailProgress || detailError" />
+									<br *ngIf="!detailProgress || detailError" />
+									<br *ngIf="!detailProgress || detailError" />
+                                        <div class="progress-error-panel" *ngIf="(!detailProgress && received!=0 && !detailError) || detailError"></div>
+									<div class="progress" *ngIf="!detailProgress && received!=0 && !detailError">
+										<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+									</div>
+									<div class="panel panel-danger" *ngIf="detailError">
+										<div class="panel-heading">Error! Failed to get current stock data.</div>
+									</div>
+                                        </div>
+								</div>
+								<div class='row' class='top-headers'  id='chart-container'>
+									<div class="tab-content nopadding">
+										<div>
+											<ul class="nav nav-tabs " id="nav-indicators">
+												<li class="active" (click)="shareOnFB('price')"><a data-toggle="tab" href="result/detail#price"> Price </a>
+												</li>
+												<li (click)="shareOnFB('sma')"><a data-toggle="tab" href="result/detail#sma"> SMA </a>
+												</li>
+												<li (click)="shareOnFB('ema')"><a data-toggle="tab" href="result/detail#ema"> EMA </a>
+												</li>
+												<li (click)="shareOnFB('stoch')"><a data-toggle="tab" href="result/detail#stoch"> STOCH </a>
+												</li>
+												<li (click)="shareOnFB('rsi')"><a data-toggle="tab" href="result/detail#rsi"> RSI </a>
+												</li>
+												<li (click)="shareOnFB('adx')"><a data-toggle="tab" href="result/detail#adx"> ADX </a>
+												</li>
+												<li (click)="shareOnFB('cci')"><a data-toggle="tab" href="result/detail#cci"> CCI </a>
+												</li>
+												<li (click)="shareOnFB('bbands')"><a data-toggle="tab" href="result/detail#bbands"> BBANDS </a>
+												</li>
+												<li (click)="shareOnFB('macd')"><a data-toggle="tab" href="result/detail#macd"> MACD </a>
+												</li>
+											</ul>
+										</div>
+										<div id="price" class="tab-pane fade in active">
+                                            <div class="progress-error-panel" *ngIf="(!priceDataReady && received!=0 && !detailError) || detailError"></div>
+											<div class="progress center-block element" *ngIf="!priceDataReady && received!=0 && !detailError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="detailError">
+												<div class="panel-heading">Error! Failed to get price data.</div>
+											</div>
+											<app-price-chart [dates]='dates' [data]='priceData' [symbol]='tickerSymbol' (plotOptions)="setPricePlotOptions($event)" *ngIf="priceDataReady"></app-price-chart>
+										</div>
+										<div id="sma" class="tab-pane fade">
+                                            <div class="progress-error-panel" *ngIf="(!SMADataReady && received!=0 && !SMAError) || SMAError"></div>
+											<div class="progress center-block element" *ngIf="!SMADataReady && received!=0 && !SMAError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="SMAError">
+												<div class="panel-heading">Error! Failed to get SMA data.</div>
+											</div>
+											<app-sma-chart [dates]='dates' [data]='SMAData' [symbol]='tickerSymbol' (plotOptions)="setSMAPlotOptions($event)" *ngIf="SMADataReady"></app-sma-chart>
+										</div>
+										<div id="ema" class="tab-pane fade">
+                                            <div class="progress-error-panel" *ngIf="(!EMADataReady && received!=0 && !EMAError) || EMAError"></div>
+											<div class="progress center-block element" *ngIf="!EMADataReady && received!=0 && !EMAError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="EMAError">
+												<div class="panel-heading">Error! Failed to get EMA data.</div>
+											</div>
+											<app-ema-chart [dates]='dates' [data]='EMAData' [symbol]='tickerSymbol' (plotOptions)="setEMAPlotOptions($event)" *ngIf="EMADataReady"></app-ema-chart>
+										</div>
+										<div id="stoch" class="tab-pane fade ">
+                                            <div class="progress-error-panel" *ngIf="(!STOCHDataReady && received!=0 && !STOCHError) || STOCHError"></div>
+											<div class="progress center-block element" *ngIf="!STOCHDataReady && received!=0 && !STOCHError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="STOCHError">
+												<div class="panel-heading">Error! Failed to get STOCH data.</div>
+											</div>
+											<app-stoch-chart [dates]='dates' [data]='STOCHData' [symbol]='tickerSymbol' (plotOptions)="setSTOCHPlotOptions($event)" *ngIf="STOCHDataReady"></app-stoch-chart>
+										</div>
+										<div id="rsi" class="tab-pane fade ">
+                                            <div class="progress-error-panel" *ngIf="(!RSIDataReady && received!=0 && !RSIError) || RSIError"></div>
+											<div class="progress center-block element" *ngIf="!RSIDataReady && received!=0 && !RSIError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="RSIError">
+												<div class="panel-heading">Error! Failed to get RSI data.</div>
+											</div>
+											<app-rsi-chart [dates]='dates' [data]='RSIData' [symbol]='tickerSymbol' (plotOptions)="setRSIPlotOptions($event)" *ngIf="RSIDataReady"></app-rsi-chart>
+										</div>
+										<div id="adx" class="tab-pane fade ">
+                                            <div class="progress-error-panel" *ngIf="(!ADXDataReady && received!=0 && !ADXError) || ADXError"></div>
+											<div class="progress center-block element" *ngIf="!ADXDataReady && received!=0 && !ADXError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="ADXError">
+												<div class="panel-heading">Error! Failed to get ADX data.</div>
+											</div>
+											<app-adx-chart [dates]='dates' [data]='ADXData' [symbol]='tickerSymbol' (plotOptions)="setADXPlotOptions($event)" *ngIf="ADXDataReady"></app-adx-chart>
+										</div>
+										<div id="cci" class="tab-pane fade ">
+                                            <div class="progress-error-panel" *ngIf="(!CCIDataReady && received!=0 && !CCIError) || CCIError"></div>
+											<div class="progress center-block element" *ngIf="!CCIDataReady && received!=0 && !CCIError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="CCIError">
+												<div class="panel-heading">Error! Failed to get CCI data.</div>
+											</div>
+											<app-cci-chart [dates]='dates' [data]='CCIData' [symbol]='tickerSymbol' (plotOptions)="setCCIPlotOptions($event)" *ngIf="CCIDataReady"></app-cci-chart>
+										</div>
+										<div id="bbands" class="tab-pane fade ">
+                                            <div class="progress-error-panel" *ngIf="(!BBANDSDataReady && received!=0 && !BBANDSError) || BBANDSError"></div>
+											<div class="progress center-block element" *ngIf="!BBANDSDataReady && received!=0 && !BBANDSError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="BBANDSError">
+												<div class="panel-heading">Error! Failed to get BBANDS data.</div>
+											</div>
+											<app-bbands-chart [dates]='dates' [data]='BBANDSData' [symbol]='tickerSymbol' (plotOptions)="setBBANDSPlotOptions($event)" *ngIf="BBANDSDataReady"></app-bbands-chart>
+										</div>
+										<div id="macd" class="tab-pane fade ">
+                                            <div class="progress-error-panel" *ngIf="(!MACDDataReady && received!=0 && !MACDError) || MACDError"> </div>
+											<div class="progress center-block element" *ngIf="!MACDDataReady && received!=0 && !MACDError">
+												<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+											</div>
+											<div class="panel panel-danger panel-danger-indicator" *ngIf="MACDError">
+												<div class="panel-heading">Error! Failed to get MACD data.</div>
+											</div>
+											<app-macd-chart [dates]='dates' [data]='MACDData' [symbol]='tickerSymbol' (plotOptions)="setMACDPlotOptions($event)" *ngIf="MACDDataReady"></app-macd-chart>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- historical section -->
+							<div id="historical" class="tab-pane fade">
+                                <br/>
+								<br *ngIf="!historyDataReady && received!=0 && !detailError">
+								<br *ngIf="!historyDataReady && received!=0 && !detailError">
+                                <div class="progress center-block element" *ngIf="!historyDataReady && received!=0 && !detailError">
+								    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+								</div>
+								<div class="panel panel-danger panel-danger-indicator" *ngIf="detailError">
+								    <div class="panel-heading">Error! Failed to get price data.</div>
+								</div>
+                                <app-history-chart [data]='historyData' [symbol]='tickerSymbol' *ngIf="historyDataReady"></app-history-chart>
+                            </div>
+							<!-- news section -->
+							<div id="news" class="tab-pane fade">
+								<br/>
+								<br *ngIf="!newsProgress && received!=0">
+								<br *ngIf="!newsProgress && received!=0">
+								<div class="progress center-block element" *ngIf="!newsProgress && received!=0 && !newsError">
+									<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+								</div>
+								<div class="panel panel-danger" *ngIf="newsError">
+									<div class="panel-heading">Error! Failed to get news.</div>
+								</div>
+								<div *ngIf="newsProgress">
+									<div *ngFor="let news of newsItems">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<br/>
+												<a [href]='news.link' target="_blank" class='title' *ngIf="news.link!=''"> {{ news.title }}</a>
+												<br *ngIf="news.link!=''" />
+												<br *ngIf="news.link!=''" />
+												<b *ngIf="news.link!=''">Author: {{ news['sa:author_name'] }}<br/><br/></b>
+												<!-- TODO: daylight saving time issue: EDT, EST -->
+												<b *ngIf="news.link!=''">Date: {{formalizePubDate(news.pubDate)}} EDT <br/><br/></b>
+												<span *ngIf="news.link==''"> No News <br/><br/></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+                    </div>
+                    </div>
+			</table>
+            </div>
+		</div>
+	</div>

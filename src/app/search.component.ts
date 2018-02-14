@@ -23,7 +23,7 @@ import { StockService } from './stock.service';
 
 export class SearchComponent implements OnInit {
     isInvalidInput = false;
-    // buttonDisabled = true; // search button
+    buttonDisabled = true; // search button
     
     private searchTerms = new Subject<string>();
     

@@ -280,11 +280,11 @@ export class DetailComponent implements OnInit {
                 if (changeValue > 0) {
                     this.up = true;
                     this.down = false;
-                    this.src= 'http://cs-server.usc.edu:45678/hw/hw8/images/Up.png';
+                    this.src= 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Green_Arrow_Up.svg/2000px-Green_Arrow_Up.svg.png';
                 } else if (changeValue < 0) {
                     this.up = false;
                     this.down = true;
-                    this.src= 'http://cs-server.usc.edu:45678/hw/hw8/images/Down.png';
+                    this.src= 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Red_Arrow_Down.svg/1024px-Red_Arrow_Down.svg.png';
                 } else {
                     this.up = false;
                     this.down = false;
@@ -354,13 +354,13 @@ export class DetailComponent implements OnInit {
             } else {
                 if (this.results.news.item) {
                     this.newsItems = this.results.news.item; 
-                    // only show 5 valid news links
+                    // only show at most 20 valid news links
                     for (var i = 0; i < this.newsItems.length; i++) {
                         if (!this.isValidLink(this.newsItems[i].link)) {
                             this.newsItems.splice(i, 1);
                         }
                     }
-                    if (this.newsItems.length > 5) this.newsItems = this.newsItems.slice(0, 5);
+                    if (this.newsItems.length > 20) this.newsItems = this.newsItems.slice(0, 20);
                 } else {
                     this.newsItems = [{"title":"", "sa:author_name":"", "pubDate":"", "link":"",}];
                 }

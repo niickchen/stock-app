@@ -23,7 +23,7 @@ import { StockService } from './stock.service';
 
 export class SearchComponent implements OnInit {
     isInvalidInput = false;
-    buttonDisabled = true; // search button
+    // buttonDisabled = true; // search button
     
     private searchTerms = new Subject<string>();
     
@@ -39,8 +39,8 @@ export class SearchComponent implements OnInit {
     ngOnInit(): void {
         this.buttonRouterLink = "";
         
-        // call autocompSearch after keyup 0.2s && if word changed
-        this.options = this.searchTerms.debounceTime(200).distinctUntilChanged().switchMap(term => term ? this.autocompSearch(term) : Observable.of<any>([])).catch(error => {
+        // call autocompSearch after keyup 0.1s && if typed word changed
+        this.options = this.searchTerms.debounceTime(100).distinctUntilChanged().switchMap(term => term ? this.autocompSearch(term) : Observable.of<any>([])).catch(error => {
             // add error handling
         
         

@@ -38,7 +38,7 @@
                                                     <tr id='detail-header-row' >
                                                         <th id='detail-header'>Stock Details
                                                         </th>
-                                                        <button type="button" class="btn btn-default" (click)="shareOnFB('fb')"  [disabled]='!this.fbActive'> <img id="fb-icon" src="http://cs-server.usc.edu:45678/hw/hw8/images/facebook.png">
+                                                        <button type="button" class="btn btn-default" (click)="shareOnFB('fb')"  [disabled]='!this.fbActive'> <img id="fb-icon" src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/256/social-facebook-icon.png">
                                                         </button>
                                                         <button type="button" class="btn btn-default" (click)="invertStar()"><span class="glyphicon" [class.glyphicon-star-empty]='emptyStar' [class.glyphicon-star]='!emptyStar'></span>
                                                         </button>
@@ -246,7 +246,7 @@
 												<br *ngIf="news.link!=''" />
 												<b *ngIf="news.link!=''">Author: {{ news['sa:author_name'] }}<br/><br/></b>
 												<!-- TODO: daylight saving time issue: EDT, EST -->
-												<b *ngIf="news.link!=''">Date: {{formalizePubDate(news.pubDate)}} EDT <br/><br/></b>
+												<b *ngIf="news.link!=''">Date: {{formalizePubDate(news.pubDate)}} EST <br/><br/></b>
 												<span *ngIf="news.link==''"> No News <br/><br/></span>
 											</div>
 										</div>

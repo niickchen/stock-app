@@ -2,7 +2,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
-    background-image: url("http://cs-server.usc.edu:45678/hw/hw8/images/background.png");
+    background-image: url("https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg");
+    ;
 }
 
 app-root {
